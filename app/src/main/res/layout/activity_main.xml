@@ -6,13 +6,167 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <AutoCompleteTextView
+        android:id="@+id/Ally5"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ally"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/Ally4"
+        app:layout_constraintTop_toBottomOf="@+id/Ally4" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Ally4"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ally"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/Ally3"
+        app:layout_constraintTop_toBottomOf="@+id/Ally3" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Ally3"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ally"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/Ally2"
+        app:layout_constraintTop_toBottomOf="@+id/Ally2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Ally2"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ally"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/Ally1"
+        app:layout_constraintTop_toBottomOf="@+id/Ally1" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Ally1"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:hint="@string/ally"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Enemy1"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/enemy"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Enemy2"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enemy"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/Enemy1"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy1" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Enemy3"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enemy"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/Enemy2"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Enemy4"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enemy"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/Enemy3"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy3" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Enemy5"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enemy"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/Enemy4"
+        app:layout_constraintTop_toBottomOf="@+id/Enemy4" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/whatShouldI"
+        app:layout_constraintEnd_toStartOf="@+id/Enemy5"
+        app:layout_constraintStart_toEndOf="@+id/Ally5"
+        app:layout_constraintTop_toBottomOf="@+id/Ally5" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textPick1"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textPick2"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textPick1" />
+
+    <TextView
+        android:id="@+id/textPick3"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/textPick1"
+        app:layout_constraintTop_toBottomOf="@+id/textPick1" />
+
+    <TextView
+        android:id="@+id/textPick4"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/textPick2"
+        app:layout_constraintTop_toBottomOf="@+id/textPick2" />
 
 </android.support.constraint.ConstraintLayout>
