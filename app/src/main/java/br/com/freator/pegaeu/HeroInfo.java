@@ -2,12 +2,12 @@ package br.com.freator.pegaeu;
 
 import java.util.ArrayList;
 
-public class conProHero {
+public class HeroInfo {
     private String name;
     private ArrayList<String> con = new ArrayList<>();
-    private ArrayList<String> pro = new ArrayList<>();
 
-    public void setName(String name) {
+
+    public HeroInfo(String name){
         this.name = name;
     }
 
@@ -15,9 +15,6 @@ public class conProHero {
         this.con.add(con);
     }
 
-    public void setPro(String pro) {
-        this.pro.add(pro);
-    }
 
     public String getName() {
         return name;
@@ -27,7 +24,15 @@ public class conProHero {
         return con;
     }
 
-    public ArrayList<String> getPro() {
-        return pro;
+
+    public boolean removeCon(String name){
+        int size = con.size();
+        for(int index = 0; index < size; index++){
+            if(con.get(index).equals(name)){
+                con.remove(index);
+                return true;
+            }
+        }
+        return false;
     }
 }

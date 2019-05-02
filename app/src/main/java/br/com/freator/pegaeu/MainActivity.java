@@ -6,18 +6,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static android.R.layout.simple_dropdown_item_1line;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    ArrayList<String> heroesList = new ArrayList<>(Arrays.asList("Abaddon","Alchemist","Axe","Beastmaster","Brewmaster","Bristleback","Centaur Warrunner","Chaos Knight","Clockwerk","Doom","Dragon Knight","Earth Spirit","Earthshaker","Elder Titan","Huskar","Io","Kunkka","Legion Commander","Lifestealer","Lycan","Magnus","Mars","Night Stalker","Omniknight","Phoenix","Pudge","Sand King","Slardar","Spirit Breaker","Sven","Tidehunter","Timbersaw","Tiny","Treant Protector","Tusk","Underlord","Undying","Wraith King",
-            "Anti-Mage","Arc Warden","Bloodseeker","Bounty Hunter","Broodmother","Clinkz","Drow Ranger","Ember Spirit","Faceless Void","Gyrocopter","Juggernaut","Lone Druid","Luna","Medusa","Meepo","Mirana","Monkey King","Morphling","Naga Siren","Nyx Assassin","Pangolier","Phantom Assassin","Phantom Lancer","Razor","Riki","Shadow Fiend","Slark","Sniper","Spectre","Templar Assassin","Terrorblade","Troll Warlord","Ursa","Vengeful Spirit","Venomancer","Viper","Weaver",
-            "Ancient Apparition","Bane","Batrider","Chen","Crystal Maiden","Dark Seer","Dark Willow","Dazzle","Death Prophet","Disruptor","Enchantress","Enigma","Grimstroke","Invoker","Jakiro","Keeper of the Light","Leshrac","Lich","Lina","Lion","Natures Prophet","Necrophos","Ogre Magi","Oracle","Outworld Devourer","Puck","Pugna","Queen of Pain","Rubick","Shadow Demon","Shadow Shaman","Silencer","Skywrath Mage","Storm Spirit","Techies","Tinker","Visage","Warlock","Windranger","Winter Wyvern","Witch Doctor","Zeus"));
 
 
     @Override
@@ -25,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        fakeDataBase db = new fakeDataBase();
+        db.fillDataBase();
+        ArrayList<String> heroesList = db.getHeros();
+
 
         final AutoCompleteTextView textViewA1, textViewA2, textViewA3, textViewA4, textViewA5, textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
         textViewA1 = findViewById(R.id.Ally1);
@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewSuggestion4 = findViewById(R.id.textPick4);
         textViews.add(textViewSuggestion4);
 
-        autoComplete(autoCompleteTextViews);
+        autoComplete(autoCompleteTextViews, heroesList);
         new ListenerClass(autoCompleteTextViews, heroesList, textViews);
 
     }
 
-    public void autoComplete(ArrayList<AutoCompleteTextView> autoCompleteTextViews)
+    public void autoComplete(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, simple_dropdown_item_1line, heroesList);
         for (AutoCompleteTextView autoComplete: autoCompleteTextViews) {
