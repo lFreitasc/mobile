@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 class ListenerClass {
 
-    private String[] heroesList;
+    private ArrayList<String> heroesList;
     private ArrayList<TextView> textViews;
     private String[] suggestionHeroes = new String[4];
     private String[] allyHeroes = new String[5];
     private String[] enemyHeroes = new String[5];
 
-    ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, String[] heroesList, ArrayList<TextView> textViews) {
+    ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews) {
         this.heroesList = heroesList;
         int i = 0;
         for(AutoCompleteTextView each : autoCompleteTextViews){
