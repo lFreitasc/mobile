@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 public class fakeDataBase {
 
-    ArrayList<HeroInfo> data = new ArrayList<>();
+    public ArrayList<HeroInfo> data = new ArrayList<>();
 
-    public String pro(String hero){
+    public ArrayList<String> con(String hero){
+        try{
+            return getHero(hero).getCon();
+        }catch (Exception e){
+            return new ArrayList<>();
+        }
 
-        return "pro";
     }
-    public String con(String hero){
-        return "con";
-    }
 
-    public void fillDataBase(){
+    void fillDataBase(){
         HeroInfo ancient = new HeroInfo("Ancient Apparition");
         HeroInfo alch = new HeroInfo("Alchemist");
         HeroInfo pl = new HeroInfo("Phantom Lancer");
@@ -28,12 +29,21 @@ public class fakeDataBase {
         data.add(pl);
     }
 
-    public ArrayList<String> getHeros(){
-        ArrayList<String> result = new ArrayList<>();
+    public HeroInfo getHero(String heroName) throws Exception{
         for(HeroInfo each : data){
-            result.add(each.getName());
+            if(each.getName().equals(heroName)){
+                return each;
+            }
         }
-        return result;
+        throw new Exception("HeroFindingException");
+    }
+
+    public ArrayList<String> getHeroes(){
+        ArrayList<String> heroes = new ArrayList<>();
+        for(HeroInfo each : data){
+            heroes.add(each.getName());
+        }
+        return heroes;
     }
 
     public void addHero(HeroInfo hero){

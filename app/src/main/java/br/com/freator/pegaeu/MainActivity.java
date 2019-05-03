@@ -23,15 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
         fakeDataBase db = new fakeDataBase();
         db.fillDataBase();
-        ArrayList<String> heroesList = db.getHeros();
+        ArrayList<String> heroesList = db.getHeroes();
 
 
-        final AutoCompleteTextView textViewA1, textViewA2, textViewA3, textViewA4, textViewA5, textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
-        textViewA1 = findViewById(R.id.Ally1);
-        textViewA2 = findViewById(R.id.Ally2);
-        textViewA3 = findViewById(R.id.Ally3);
-        textViewA4 = findViewById(R.id.Ally4);
-        textViewA5 = findViewById(R.id.Ally5);
+        final AutoCompleteTextView textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
+
         textViewE1 = findViewById(R.id.Enemy1);
         textViewE2 = findViewById(R.id.Enemy2);
         textViewE3 = findViewById(R.id.Enemy3);
@@ -39,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
         textViewE5 = findViewById(R.id.Enemy5);
 
         ArrayList <AutoCompleteTextView>  autoCompleteTextViews = new ArrayList<>();
-        autoCompleteTextViews.add(textViewA1);
-        autoCompleteTextViews.add(textViewA2);
-        autoCompleteTextViews.add(textViewA3);
-        autoCompleteTextViews.add(textViewA4);
-        autoCompleteTextViews.add(textViewA5);
         autoCompleteTextViews.add(textViewE1);
         autoCompleteTextViews.add(textViewE2);
         autoCompleteTextViews.add(textViewE3);
@@ -61,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         textViews.add(textViewSuggestion4);
 
         autoComplete(autoCompleteTextViews, heroesList);
-        new ListenerClass(autoCompleteTextViews, heroesList, textViews);
+        new ListenerClass(autoCompleteTextViews, heroesList, textViews, db);
 
     }
 

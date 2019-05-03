@@ -13,10 +13,10 @@ class ListenerClass {
     private ArrayList<String> heroesList;
     private ArrayList<TextView> textViews;
     private String[] suggestionHeroes = new String[4];
-    private String[] allyHeroes = new String[5];
+    private fakeDataBase db;
     private String[] enemyHeroes = new String[5];
 
-    ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews) {
+    ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews, fakeDataBase db) {
         this.heroesList = heroesList;
         int i = 0;
         for(AutoCompleteTextView each : autoCompleteTextViews){
@@ -24,6 +24,7 @@ class ListenerClass {
             i++;
         }
         this.textViews = textViews;
+        this.db = db;
     }
 
 
@@ -44,19 +45,17 @@ class ListenerClass {
             public void afterTextChanged(Editable s) {
                 String thisHero = verifyHero(s.toString());
                 if(!thisHero.equals("")){
-                    if(index < 5) allyHeroes[index] = thisHero;
-                    else enemyHeroes[index - 5] = thisHero;
+                    enemyHeroes[index] = thisHero;
 
-                    suggestionHeroes = new PickClass().getSuggestions(allyHeroes, enemyHeroes);
-                    int index = 0;
+                    suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
+                    int index2 = 0;
                     for(String each : suggestionHeroes){
                         if(each != null){
-                            textViews.get(index).setText(each);
-                            Log.e("hero", each);
+                            textViews.get(index2).setText(each);
                         }else{
-                            textViews.get(index).setText("");
+                            textViews.get(index2).setText("");
                         }
-                        index++;
+                        index2++;
                     }
                 }
 

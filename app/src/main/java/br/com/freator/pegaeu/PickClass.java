@@ -1,25 +1,46 @@
 package br.com.freator.pegaeu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+
 
 public class PickClass{
 
-    public String[] getSuggestions(String[] allyHeroes, String[] enemyHeroes, fakeDataBase db){
-        String[] suggestionHeros = new String[4];
-        HashMap<String, Integer> dic = new HashMap<String, Integer>();
+    public String[] getSuggestions(String[] enemyHeroes, fakeDataBase db){
+        String[] resultSuggestion = new String[4];
+        ArrayList<Integer> countList = new ArrayList<>();
+        ArrayList<String> singleHero = new ArrayList<>();
+        for (String each : enemyHeroes) {
 
-        for (String each: enemyHeroes) {
-            if(dic.containsKey(each)){
-                dic.put(each, dic.get(each) + 1);
-            }else dic.put(each, 1);
+            ArrayList<String> suggestionReturn = db.con(each);
+
+            /*
+             * Erro de index na linha 23 --> java.lang.ArrayIndexOutOfBoundsException: length=10; index=-1
+             * */
+            for (String hero: suggestionReturn) {
+                if (singleHero.contains(hero)){
+                    int index = singleHero.indexOf(each);
+                    int valueCount = countList.get(index) + 1;
+                    countList.remove(index);
+                    countList.add(index, valueCount);
+
+                } else{
+                    singleHero.add(each);
+                    countList.add(1);
+                }
+            }
+        }
+        for(int i = 0; i < 4; i++){
+            if(!countList.isEmpty()){
+                int maxValue = Collections.max(countList);
+                int index = countList.indexOf(maxValue);
+                resultSuggestion[i] = singleHero.get(index);
+                singleHero.remove(index);
+                countList.remove(index);
+            }
         }
 
-
-
-
-
-        return suggestionHeros;
+        return resultSuggestion;
 
     }
 }

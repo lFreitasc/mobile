@@ -15,7 +15,6 @@ public class HeroInfo {
         this.con.add(con);
     }
 
-
     public String getName() {
         return name;
     }
