@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class HeroInfo {
     private String name;
-    private ArrayList<String> con = new ArrayList<>();
+    private ArrayList<String> con;
+
 
 
     public HeroInfo(String name){
+        con = new ArrayList<>();
         this.name = name;
     }
 

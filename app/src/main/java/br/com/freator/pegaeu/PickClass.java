@@ -10,22 +10,20 @@ public class PickClass{
         String[] resultSuggestion = new String[4];
         ArrayList<Integer> countList = new ArrayList<>();
         ArrayList<String> singleHero = new ArrayList<>();
+
         for (String each : enemyHeroes) {
 
             ArrayList<String> suggestionReturn = db.con(each);
 
-            /*
-             * Erro de index na linha 23 --> java.lang.ArrayIndexOutOfBoundsException: length=10; index=-1
-             * */
             for (String hero: suggestionReturn) {
                 if (singleHero.contains(hero)){
-                    int index = singleHero.indexOf(each);
+                    int index = singleHero.indexOf(hero);
                     int valueCount = countList.get(index) + 1;
                     countList.remove(index);
                     countList.add(index, valueCount);
 
                 } else{
-                    singleHero.add(each);
+                    singleHero.add(hero);
                     countList.add(1);
                 }
             }

@@ -2,7 +2,6 @@ package br.com.freator.pegaeu;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
@@ -46,17 +45,17 @@ class ListenerClass {
                 String thisHero = verifyHero(s.toString());
                 if(!thisHero.equals("")){
                     enemyHeroes[index] = thisHero;
-
-                    suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
-                    int index2 = 0;
-                    for(String each : suggestionHeroes){
-                        if(each != null){
-                            textViews.get(index2).setText(each);
-                        }else{
-                            textViews.get(index2).setText("");
-                        }
-                        index2++;
+                }
+                suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
+                int index2 = 0;
+                for(String each : suggestionHeroes){
+                    if(each != null){
+                        textViews.get(index2).setText(each);
+                    }else{
+                        enemyHeroes[index] = null;
+                        textViews.get(index2).setText("");
                     }
+                    index2++;
                 }
 
             }
