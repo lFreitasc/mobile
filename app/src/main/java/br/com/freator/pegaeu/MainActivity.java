@@ -74,19 +74,27 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, CrudActivity.class);
                 intent.putExtra("FakeBase", db);
                 startActivity(intent);
-                break;
+
+                return true;
 
             case R.id.listToolbar:
                 intent = new Intent(this, ListActivity.class);
 
                 startActivity(intent);
-                break;
+
+
+                return true;
 
             case R.id.aboutToolbar:
                 intent = new Intent(this, AboutActivity.class);
-                break;
+
+                startActivity(intent);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void autoComplete(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList)

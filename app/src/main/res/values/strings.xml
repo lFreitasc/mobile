@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">PegaEu</string>
+    <string name="app_name" translatable="false">PegaEu</string>
     <string name="enemy">Enemy</string>
-    <string name="ally">Ally</string>
     <string name="whatShouldI">What Should I Pick ?</string>
-    <string name="contact">Hi, my name is Lucas, i\'m the developer of this peruvian shit app</string>
     <string name="crudToolbar">Add/Edit</string>
     <string name="listToolbar">List Heroes</string>
     <string name="aboutToolbar">About</string>
+    <string name="pegaEu" translatable="false">PegaEU</string>
+    <string name="aboutAppDescrip">PegaEU is a app for helping you to make the best dota pick</string>
+    <string name="aboutDevelopment">Developed by: Freator.py</string>
+    <string name="email" translatable="false">lucas.freitascosta96@gmail.com</string>
 </resources>

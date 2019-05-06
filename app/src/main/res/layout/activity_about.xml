@@ -6,4 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".AboutActivity">
 
+    <TextView
+        android:id="@+id/textAboutName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/pegaEu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textAboutMain"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/aboutAppDescrip"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/textAboutName"
+        app:layout_constraintStart_toStartOf="@+id/textAboutName"
+        app:layout_constraintTop_toBottomOf="@+id/textAboutName" />
+
+    <TextView
+        android:id="@+id/textAboutDev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="@string/aboutDevelopment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textAboutName"
+        app:layout_constraintStart_toStartOf="@+id/textAboutName" />
+
+    <TextView
+        android:id="@+id/textAboutEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/email"
+        app:layout_constraintEnd_toEndOf="@+id/textAboutDev"
+        app:layout_constraintStart_toStartOf="@+id/textAboutDev"
+        app:layout_constraintTop_toBottomOf="@+id/textAboutDev" />
 </android.support.constraint.ConstraintLayout>
