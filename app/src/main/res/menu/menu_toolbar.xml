@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/crudToolbar"
+        android:title="@string/crudToolbar" />
+    <item
+        android:id="@+id/listToolbar"
+        android:title="@string/listToolbar" />
+    <item
+        android:id="@+id/aboutToolbar"
+        android:title="@string/aboutToolbar" />
+</menu>

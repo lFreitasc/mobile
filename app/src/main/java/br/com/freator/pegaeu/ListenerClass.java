@@ -45,6 +45,8 @@ class ListenerClass {
                 String thisHero = verifyHero(s.toString());
                 if(!thisHero.equals("")){
                     enemyHeroes[index] = thisHero;
+                }else{
+                    enemyHeroes[index] = null;
                 }
                 suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
                 int index2 = 0;
@@ -52,7 +54,6 @@ class ListenerClass {
                     if(each != null){
                         textViews.get(index2).setText(each);
                     }else{
-                        enemyHeroes[index] = null;
                         textViews.get(index2).setText("");
                     }
                     index2++;

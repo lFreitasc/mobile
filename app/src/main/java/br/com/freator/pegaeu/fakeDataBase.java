@@ -1,9 +1,11 @@
 package br.com.freator.pegaeu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class fakeDataBase {
+public class fakeDataBase implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     public ArrayList<HeroInfo> data = new ArrayList<>();
 
     public ArrayList<String> con(String hero){
