@@ -9,4 +9,6 @@
     <string name="aboutDevelopment">Desenvolvido por: Freator.py</string>
     <string name="AddCrudButton">Adicionar Herói</string>
     <string name="Hero">Herói</string>
+    <string name="Save">Salvar</string>
+    <string name="EditActivityBad">Ruim Contra:</string>
 </resources>

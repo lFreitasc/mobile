@@ -20,7 +20,7 @@ import static android.R.layout.simple_dropdown_item_1line;
 
 public class MainActivity extends AppCompatActivity {
 
-    fakeDataBase db;
+    static fakeDataBase db;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 

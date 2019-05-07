@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Activities.AddHeroActivity">
 
+    <EditText
+        android:id="@+id/addHeroName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:ems="10"
+        android:hint="@string/Hero"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addSaveButon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonSave"
+        android:text="@string/Save"
+        app:layout_constraintEnd_toEndOf="@+id/addHeroName"
+        app:layout_constraintStart_toStartOf="@+id/addHeroName"
+        app:layout_constraintTop_toBottomOf="@+id/addHeroName" />
 </android.support.constraint.ConstraintLayout>

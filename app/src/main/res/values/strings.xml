@@ -11,4 +11,6 @@
     <string name="email" translatable="false">lucas.freitascosta96@gmail.com</string>
     <string name="AddCrudButton">Add Hero</string>
     <string name="Hero">Hero</string>
+    <string name="EditActivityBad">Poor versus:</string>
+    <string name="Save">Save</string>
 </resources>

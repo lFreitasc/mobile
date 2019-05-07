@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import br.com.freator.pegaeu.Adapters.Adapter;
 import br.com.freator.pegaeu.Helpers.RecyclerItemClickListener;
@@ -19,7 +18,8 @@ import br.com.freator.pegaeu.R;
 public class CrudActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private fakeDataBase db;
+    static fakeDataBase db;
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class CrudActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         if(bundle != null){
@@ -49,14 +49,13 @@ public class CrudActivity extends AppCompatActivity {
                     new RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-//                            Toast.makeText(getApplicationContext(),db.getHeroes().get(position),Toast.LENGTH_SHORT).show();
-
+                            callEditHero(position);
                         }
 
 
                         @Override
                         public void onLongItemClick(View view, int position) {
-
+                            //implementar multipla seleção para excluir -- não essencial até fim da matéria
                         }
 
                         @Override
@@ -66,5 +65,18 @@ public class CrudActivity extends AppCompatActivity {
                     }
             )
         );
+    }
+
+    public void callEditHero(int position){
+        intent = new Intent(this, EditHeroActivity.class);
+        intent.putExtra("FakeBase", db);
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    public void callAddHero(View view){
+        intent = new Intent(this, AddHeroActivity.class);
+        intent.putExtra("FakeBase", db);
+        startActivity(intent);
     }
 }

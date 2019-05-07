@@ -3,7 +3,6 @@ package br.com.freator.pegaeu.Helpers;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import br.com.freator.pegaeu.Helpers.HeroInfo;
 
 public class fakeDataBase implements Serializable {
 
