@@ -63,4 +63,14 @@ public class EditHeroActivity extends AppCompatActivity {
     }
 
 
+    public void buttonDelete(View view){
+        db.deleteHero(heroInfo.getName());
+
+        Intent result = new Intent();
+        result.putExtra("FakeBase", db);
+        setResult(1, result);
+
+        finish();
+    }
+
 }

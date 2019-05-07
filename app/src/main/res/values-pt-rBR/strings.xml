@@ -11,4 +11,5 @@
     <string name="Hero">Herói</string>
     <string name="Save">Salvar</string>
     <string name="EditActivityBad">Ruim Contra:</string>
+    <string name="Delete">Excluir</string>
 </resources>

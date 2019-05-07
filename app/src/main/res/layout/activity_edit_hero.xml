@@ -51,4 +51,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
+    <Button
+        android:id="@+id/EditDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="buttonDelete"
+        android:text="@string/Delete"
+        app:layout_constraintEnd_toEndOf="@+id/EditSaveButton"
+        app:layout_constraintStart_toStartOf="@+id/EditSaveButton"
+        app:layout_constraintTop_toBottomOf="@+id/EditSaveButton" />
+
 </android.support.constraint.ConstraintLayout>

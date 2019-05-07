@@ -13,4 +13,5 @@
     <string name="Hero">Hero</string>
     <string name="EditActivityBad">Poor versus:</string>
     <string name="Save">Save</string>
+    <string name="Delete">Delete</string>
 </resources>
