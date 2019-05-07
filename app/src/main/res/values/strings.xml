@@ -10,4 +10,5 @@
     <string name="aboutDevelopment">Developed by: Freator.py</string>
     <string name="email" translatable="false">lucas.freitascosta96@gmail.com</string>
     <string name="AddCrudButton">Add Hero</string>
+    <string name="Hero">Hero</string>
 </resources>

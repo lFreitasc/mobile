@@ -8,4 +8,5 @@
     <string name="aboutAppDescrip">PegaEU é um aplicativo criado que auxilia suas escolhas de heróis no Dota.</string>
     <string name="aboutDevelopment">Desenvolvido por: Freator.py</string>
     <string name="AddCrudButton">Adicionar Herói</string>
+    <string name="Hero">Herói</string>
 </resources>
