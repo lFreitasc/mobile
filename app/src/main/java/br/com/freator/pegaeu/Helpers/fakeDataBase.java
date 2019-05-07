@@ -1,7 +1,9 @@
-package br.com.freator.pegaeu;
+package br.com.freator.pegaeu.Helpers;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import br.com.freator.pegaeu.Helpers.HeroInfo;
 
 public class fakeDataBase implements Serializable {
 
@@ -17,7 +19,7 @@ public class fakeDataBase implements Serializable {
 
     }
 
-    void fillDataBase(){
+    public void fillDataBase(){
         HeroInfo ancient = new HeroInfo("Ancient Apparition");
         HeroInfo alch = new HeroInfo("Alchemist");
         HeroInfo pl = new HeroInfo("Phantom Lancer");

@@ -1,4 +1,4 @@
-package br.com.freator.pegaeu;
+package br.com.freator.pegaeu.Helpers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,7 +7,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class ListenerClass {
+import br.com.freator.pegaeu.Helpers.PickClass;
+import br.com.freator.pegaeu.Helpers.fakeDataBase;
+
+public class ListenerClass {
 
     private ArrayList<String> heroesList;
     private ArrayList<TextView> textViews;
@@ -15,7 +18,7 @@ class ListenerClass {
     private fakeDataBase db;
     private String[] enemyHeroes = new String[5];
 
-    ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews, fakeDataBase db) {
+    public ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews, fakeDataBase db) {
         this.heroesList = heroesList;
         int i = 0;
         for(AutoCompleteTextView each : autoCompleteTextViews){

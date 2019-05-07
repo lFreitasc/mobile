@@ -1,4 +1,4 @@
-package br.com.freator.pegaeu;
+package br.com.freator.pegaeu.Helpers;
 
 import java.io.Serializable;
 import java.util.ArrayList;

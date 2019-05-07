@@ -6,9 +6,6 @@
         android:id="@+id/crudToolbar"
         android:title="@string/crudToolbar" />
     <item
-        android:id="@+id/listToolbar"
-        android:title="@string/listToolbar" />
-    <item
         android:id="@+id/aboutToolbar"
         android:title="@string/aboutToolbar" />
 </menu>

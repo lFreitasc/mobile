@@ -1,4 +1,4 @@
-package br.com.freator.pegaeu;
+package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import br.com.freator.pegaeu.Helpers.ListenerClass;
+import br.com.freator.pegaeu.Helpers.fakeDataBase;
+import br.com.freator.pegaeu.R;
 
 import static android.R.layout.simple_dropdown_item_1line;
 
@@ -74,14 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, CrudActivity.class);
                 intent.putExtra("FakeBase", db);
                 startActivity(intent);
-
-                return true;
-
-            case R.id.listToolbar:
-                intent = new Intent(this, ListActivity.class);
-
-                startActivity(intent);
-
 
                 return true;
 

@@ -2,9 +2,10 @@
 <resources>
     <string name="enemy">Inimigo</string>
     <string name="whatShouldI">O que devo pegar ?</string>
-    <string name="crudToolbar">Adicionar/Deletar</string>
+    <string name="crudToolbar">Heróis</string>
     <string name="listToolbar">Listar</string>
     <string name="aboutToolbar">Sobre</string>
     <string name="aboutAppDescrip">PegaEU é um aplicativo criado que auxilia suas escolhas de heróis no Dota.</string>
     <string name="aboutDevelopment">Desenvolvido por: Freator.py</string>
+    <string name="AddCrudButton">Adicionar Herói</string>
 </resources>
