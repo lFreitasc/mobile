@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import br.com.freator.pegaeu.Helpers.HeroInfo;
 import br.com.freator.pegaeu.Helpers.fakeDataBase;
@@ -53,8 +52,15 @@ public class EditHeroActivity extends AppCompatActivity {
         heroInfo.setCon(spinner.getSelectedItem().toString());
         db.deleteHero(heroInfo.getName());
         db.addHero(heroInfo);
+
+
+        Intent result = new Intent();
+        result.putExtra("FakeBase", db);
+        setResult(1, result);
+
         finish();
-//        Toast.makeText(this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
 
     }
+
+
 }

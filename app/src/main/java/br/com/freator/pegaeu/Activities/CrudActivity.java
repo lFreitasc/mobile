@@ -2,10 +2,13 @@ package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -71,12 +74,35 @@ public class CrudActivity extends AppCompatActivity {
         intent = new Intent(this, EditHeroActivity.class);
         intent.putExtra("FakeBase", db);
         intent.putExtra("position", position);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void callAddHero(View view){
         intent = new Intent(this, AddHeroActivity.class);
         intent.putExtra("FakeBase", db);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == 1 && data != null){
+            db = (fakeDataBase) data.getExtras().getSerializable("FakeBase");
+
+
+            Intent result = new Intent();
+            result.putExtra("FakeBase", db);
+            setResult(1, result);
+            finish();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent result = new Intent();
+            result.putExtra("FakeBase", db);
+            setResult(1, result);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -32,6 +32,10 @@ public class AddHeroActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.addHeroName);
         HeroInfo heroInfo = new HeroInfo(textView.getText().toString());
         db.addHero(heroInfo);
+
+        Intent result = new Intent();
+        result.putExtra("FakeBase", db);
+        setResult(1, result);
         finish();
 
     }
