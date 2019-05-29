@@ -1,6 +1,7 @@
 package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +22,7 @@ import static android.R.layout.simple_dropdown_item_1line;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Database db = Database.getDatabase(MainActivity.this);
+    private Database db;
     private ArrayList <AutoCompleteTextView>  autoCompleteTextViews;
     List<String> heroesList;
 
@@ -32,7 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        heroesList = db.heroDAO().getHeroes();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                db = Database.getDatabase(MainActivity.this);
+                heroesList = db.heroDAO().getHeroes();
+            }
+        });
+
 
 
         final AutoCompleteTextView textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
@@ -62,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
         textViews.add(textViewSuggestion4);
 
 
+        //Verificar como chamar isso após rodar athread + código acima
         new ListenerClass(autoCompleteTextViews, textViews, db);
+
+
     }
 
 
