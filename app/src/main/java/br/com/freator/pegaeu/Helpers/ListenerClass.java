@@ -6,20 +6,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import br.com.freator.pegaeu.Helpers.PickClass;
-import br.com.freator.pegaeu.Helpers.fakeDataBase;
+import br.com.freator.pegaeu.Database.Database;
 
 public class ListenerClass {
 
-    private ArrayList<String> heroesList;
+    private List<String> heroesList;
     private ArrayList<TextView> textViews;
     private String[] suggestionHeroes = new String[4];
-    private fakeDataBase db;
+    private Database db;
     private String[] enemyHeroes = new String[5];
 
-    public ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList, ArrayList<TextView> textViews, fakeDataBase db) {
-        this.heroesList = heroesList;
+    public ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<TextView> textViews, Database db) {
+        heroesList = db.heroDAO().getHeroes();
         int i = 0;
         for(AutoCompleteTextView each : autoCompleteTextViews){
             setListener(each, i);
@@ -51,6 +51,8 @@ public class ListenerClass {
                 }else{
                     enemyHeroes[index] = null;
                 }
+
+                //Passando um tipo String[] (vetor de strings)
                 suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
                 int index2 = 0;
                 for(String each : suggestionHeroes){

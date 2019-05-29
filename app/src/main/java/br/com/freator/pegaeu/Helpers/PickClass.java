@@ -2,18 +2,23 @@ package br.com.freator.pegaeu.Helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import br.com.freator.pegaeu.Database.Database;
 
 
 public class PickClass{
 
-    public String[] getSuggestions(String[] enemyHeroes, fakeDataBase db){
+    public String[] getSuggestions(String[] enemyHeroes, Database db){
         String[] resultSuggestion = new String[4];
         ArrayList<Integer> countList = new ArrayList<>();
         ArrayList<String> singleHero = new ArrayList<>();
+        Long heroID;
 
         for (String each : enemyHeroes) {
 
-            ArrayList<String> suggestionReturn = db.con(each);
+            heroID = db.heroDAO().getHeroID(each);
+            List<String> suggestionReturn = db.advantagesDAO().queryGetNames(heroID);
 
             for (String hero: suggestionReturn) {
                 if (singleHero.contains(hero)){

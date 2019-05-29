@@ -1,23 +1,19 @@
 package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import br.com.freator.pegaeu.Database.Database;
 import br.com.freator.pegaeu.Helpers.ListenerClass;
-import br.com.freator.pegaeu.Helpers.fakeDataBase;
 import br.com.freator.pegaeu.R;
 
 import static android.R.layout.simple_dropdown_item_1line;
@@ -25,19 +21,18 @@ import static android.R.layout.simple_dropdown_item_1line;
 
 public class MainActivity extends AppCompatActivity {
 
-    public fakeDataBase db;
-    public ArrayList <AutoCompleteTextView>  autoCompleteTextViews;
-    ArrayList<String> heroesList;
+    private Database db = Database.getDatabase(MainActivity.this);
+    private ArrayList <AutoCompleteTextView>  autoCompleteTextViews;
+    List<String> heroesList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        db = new fakeDataBase();
-        db.fillDataBase();
-        heroesList = db.getHeroes();
+        heroesList = db.heroDAO().getHeroes();
 
 
         final AutoCompleteTextView textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         autoCompleteTextViews.add(textViewE3);
         autoCompleteTextViews.add(textViewE4);
         autoCompleteTextViews.add(textViewE5);
-        autoComplete(autoCompleteTextViews, heroesList);
+        autoComplete(autoCompleteTextViews);
 
 
         ArrayList<TextView> textViews = new ArrayList<>();
@@ -67,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         textViews.add(textViewSuggestion4);
 
 
-        new ListenerClass(autoCompleteTextViews, heroesList, textViews, db);
+        new ListenerClass(autoCompleteTextViews, textViews, db);
     }
 
 
@@ -84,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.crudToolbar:
                 intent = new Intent(this, CrudActivity.class);
-                intent.putExtra("FakeBase", db);
                 startActivityForResult(intent, 1);
 
                 return true;
@@ -101,20 +95,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void autoComplete(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<String> heroesList)
+    public void autoComplete(ArrayList<AutoCompleteTextView> autoCompleteTextViews)
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, simple_dropdown_item_1line, heroesList);
         for (AutoCompleteTextView autoComplete: autoCompleteTextViews) {
             autoComplete.setAdapter(adapter);
             
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == 1 && data != null){
-            db = (fakeDataBase) data.getExtras().getSerializable("FakeBase");
-            autoComplete(autoCompleteTextViews, heroesList);
         }
     }
 
