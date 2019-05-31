@@ -33,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        final ArrayList<TextView> textViews = new ArrayList<>();
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 db = Database.getDatabase(MainActivity.this);
                 heroesList = db.heroDAO().getHeroes();
+                new ListenerClass(autoCompleteTextViews, textViews, db);
             }
         });
 
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         autoComplete(autoCompleteTextViews);
 
 
-        ArrayList<TextView> textViews = new ArrayList<>();
         TextView textViewSuggestion1 = findViewById(R.id.textPick1);
         textViews.add(textViewSuggestion1);
         TextView textViewSuggestion2 = findViewById(R.id.textPick2);
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Verificar como chamar isso após rodar athread + código acima
-        new ListenerClass(autoCompleteTextViews, textViews, db);
+//        new ListenerClass(autoCompleteTextViews, textViews, db);
 
 
     }

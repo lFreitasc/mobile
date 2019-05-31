@@ -1,5 +1,6 @@
 package br.com.freator.pegaeu.Activities;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,16 +19,34 @@ public class AddHeroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hero);
 
-        db = Database.getDatabase(AddHeroActivity.this);
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                db = Database.getDatabase(AddHeroActivity.this);
+            }
+        });
     }
 
     public void buttonSave(View view){
         TextView textView = findViewById(R.id.addHeroName);
-        Hero hero = new Hero();
+        final Hero hero = new Hero();
         hero.setName(textView.getText().toString());
-        db.heroDAO().insert(hero);
+        boolean waitThread = true;
 
-        finish();
+        while (waitThread){
+            if(db != null){
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.heroDAO().insert(hero);
+                        finish();
+                    }
+                });
+                waitThread = false;
+            }
+        }
+
+
 
     }
 }

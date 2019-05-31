@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.com.freator.pegaeu.Database.Database;
+import java.util.List;
+
 import br.com.freator.pegaeu.R;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
-    private Database db;
-    public Adapter(Database db)
+    private List<String> herosNames;
+    public Adapter(List<String> herosNames)
     {
-        this.db = db;
+        this.herosNames = herosNames;
     }
 
     @NonNull
@@ -30,14 +31,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
-        myViewHolder.heroName.setText(db.heroDAO().getHeroes().get(i));
+        myViewHolder.heroName.setText(herosNames.get(i));
 
 
     }
 
     @Override
     public int getItemCount() {
-        return db.heroDAO().getHeroes().size();
+        return herosNames.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
