@@ -1,7 +1,6 @@
 package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,17 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        final ArrayList<TextView> textViews = new ArrayList<>();
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                db = Database.getDatabase(MainActivity.this);
-                heroesList = db.heroDAO().getHeroes();
-                new ListenerClass(autoCompleteTextViews, textViews, db);
-            }
-        });
-
+        ArrayList<TextView> textViews = new ArrayList<>();
+        db = Database.getDatabase(MainActivity.this);
+        heroesList = db.heroDAO().getHeroes();
 
 
         final AutoCompleteTextView textViewE1, textViewE2, textViewE3, textViewE4, textViewE5;
@@ -61,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         autoCompleteTextViews.add(textViewE5);
         autoComplete(autoCompleteTextViews);
 
-
         TextView textViewSuggestion1 = findViewById(R.id.textPick1);
         textViews.add(textViewSuggestion1);
         TextView textViewSuggestion2 = findViewById(R.id.textPick2);
@@ -71,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewSuggestion4 = findViewById(R.id.textPick4);
         textViews.add(textViewSuggestion4);
 
-
-        //Verificar como chamar isso após rodar athread + código acima
-//        new ListenerClass(autoCompleteTextViews, textViews, db);
-
+        new ListenerClass(autoCompleteTextViews, textViews);
 
     }
 
@@ -92,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.crudToolbar:
                 intent = new Intent(this, CrudActivity.class);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
 
                 return true;
 
@@ -113,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, simple_dropdown_item_1line, heroesList);
         for (AutoCompleteTextView autoComplete: autoCompleteTextViews) {
             autoComplete.setAdapter(adapter);
-            
         }
     }
 

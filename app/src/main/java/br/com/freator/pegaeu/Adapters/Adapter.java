@@ -2,6 +2,7 @@ package br.com.freator.pegaeu.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<String> herosNames;
     public Adapter(List<String> herosNames)
     {
+
         this.herosNames = herosNames;
     }
 
@@ -41,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return herosNames.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
         TextView heroName;
 
@@ -49,7 +51,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             super(itemView);
 
             heroName = itemView.findViewById(R.id.textHeroAdapter);
+            heroName.setOnCreateContextMenuListener(this);
 
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(this.getAdapterPosition(), 322, 0, R.string.Delete);
         }
     }
 }

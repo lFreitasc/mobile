@@ -20,12 +20,9 @@ public interface HeroDAO {
     @Delete
     void delete(Hero hero);
 
-    @Update
-    void uptade(Hero hero);
-
     @Query("Select name from hero")
     List<String> getHeroes();
 
     @Query("Select id from hero where name = :name")
-    Long getHeroID(String name);
+    long getHeroID(String name);
 }

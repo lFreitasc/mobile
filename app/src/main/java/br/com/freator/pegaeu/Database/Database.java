@@ -24,9 +24,10 @@ public abstract class Database extends RoomDatabase {
 
             synchronized (Database.class){
                 if (instance == null){
-                    RoomDatabase.Builder builder = Room.databaseBuilder(context, Database.class, "database.db");
+//                    RoomDatabase.Builder builder = Room.databaseBuilder(context, Database.class, "database.db");
+//                    instance = (Database) builder.build();
 
-                    instance = (Database) builder.build();
+                    instance = Room.databaseBuilder(context, Database.class, "database.db").allowMainThreadQueries().build();
                 }
             }
         }

@@ -1,5 +1,6 @@
 package br.com.freator.pegaeu.Helpers;
 
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.AutoCompleteTextView;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import br.com.freator.pegaeu.Database.Database;
 
-public class ListenerClass {
+public class ListenerClass extends Activity {
 
     private List<String> heroesList;
     private ArrayList<TextView> textViews;
@@ -18,15 +19,18 @@ public class ListenerClass {
     private Database db;
     private String[] enemyHeroes = new String[5];
 
-    public ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<TextView> textViews, Database db) {
+
+    public ListenerClass(ArrayList<AutoCompleteTextView> autoCompleteTextViews, ArrayList<TextView> textViews) {
+
+        db = Database.getDatabase(ListenerClass.this);
         heroesList = db.heroDAO().getHeroes();
+
         int i = 0;
         for(AutoCompleteTextView each : autoCompleteTextViews){
             setListener(each, i);
             i++;
         }
         this.textViews = textViews;
-        this.db = db;
     }
 
 
@@ -51,9 +55,7 @@ public class ListenerClass {
                 }else{
                     enemyHeroes[index] = null;
                 }
-
-                //Passando um tipo String[] (vetor de strings)
-                suggestionHeroes = new PickClass().getSuggestions(enemyHeroes, db);
+                suggestionHeroes = new PickClass().getSuggestions(enemyHeroes);
                 int index2 = 0;
                 for(String each : suggestionHeroes){
                     if(each != null){
@@ -71,6 +73,8 @@ public class ListenerClass {
     private String verifyHero(String typedHero){
         for(String eachHero : heroesList){
             if(eachHero.equals(typedHero)){
+                System.out.println("Retornando Heroi Válido: "+typedHero);
+                System.out.println(db.advantagesDAO().queryGetName(db.advantagesDAO().queryGetID(db.heroDAO().getHeroID(typedHero))));
                 return typedHero;
             }
         }

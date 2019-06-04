@@ -4,8 +4,10 @@
 
     <item
         android:id="@+id/crudToolbar"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/crudToolbar" />
     <item
         android:id="@+id/aboutToolbar"
+        android:icon="@android:drawable/ic_menu_help"
         android:title="@string/aboutToolbar" />
 </menu>

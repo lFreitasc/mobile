@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity (foreignKeys = @ForeignKey(entity = Hero.class, parentColumns = "id", childColumns = "hero_id"))
 public class Advantages {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
 
@@ -20,15 +20,10 @@ public class Advantages {
 
 
     // Construtor
-    public Advantages(Long hero_id){
-        setHero_id(hero_id);
+    public Advantages(Long hero_id)
+    {
+        this.hero_id = hero_id;
     }
-
-    /*
-     *
-     * GETTERS e SETTERS
-     *
-     */
 
     public long getId() {return id;}
 

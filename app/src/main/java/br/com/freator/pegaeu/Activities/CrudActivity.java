@@ -1,55 +1,53 @@
 package br.com.freator.pegaeu.Activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import br.com.freator.pegaeu.Adapters.Adapter;
 import br.com.freator.pegaeu.Database.Database;
+import br.com.freator.pegaeu.Entity.Advantages;
+import br.com.freator.pegaeu.Entity.Hero;
 import br.com.freator.pegaeu.Helpers.RecyclerItemClickListener;
 import br.com.freator.pegaeu.R;
 
 public class CrudActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private Database db;
     private Intent intent;
+    private Database db;
     private Adapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        RecyclerView recyclerView;
+
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crud);
 
 
         recyclerView = findViewById(R.id.recyclerView);
-
+        db = Database.getDatabase(CrudActivity.this);
+        adapter = new Adapter(db.heroDAO().getHeroes());
 
         //config recycler layout
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        recyclerView.setAdapter(adapter);
 
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                db = Database.getDatabase(CrudActivity.this);
-                adapter = new Adapter(db.heroDAO().getHeroes());
-                recyclerView.setAdapter(adapter);
-            }
-
-        });
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getApplicationContext(), recyclerView,
@@ -58,23 +56,19 @@ public class CrudActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position)
                             {
-
-                                callEditHero(recyclerView.findViewHolderForAdapterPosition(position).toString());
-                                System.out.println(recyclerView.findViewHolderForAdapterPosition(position).toString()); //debbug
-//                            callEditHero(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.title)).getText().toString());
-                                //this one works, but lets try something diferent
+                                callEditHero(db.heroDAO().getHeroes().get(position));
                             }
 
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-                                //implementar multipla seleção para excluir -- não essencial até fim da matéria
-                                //menu contextual ?
+//                                Toast.makeText(getApplication().getBaseContext(), db.heroDAO().getHeroes().get(position),Toast.LENGTH_LONG).show();
+
                             }
 
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                //menu contextual ?
+
                             }
                         }
                 )
@@ -84,24 +78,40 @@ public class CrudActivity extends AppCompatActivity {
 
     }
 
-    public void callEditHero(String position){
+    public void callEditHero(String name){
         intent = new Intent(this, EditHeroActivity.class);
-        intent.putExtra("name", position);
+        intent.putExtra("name", name);
+        startActivity(intent);
+        this.recreate();
     }
 
     public void callAddHero(View view){
         System.out.println("Calling new intent");
         intent = new Intent(this, AddHeroActivity.class);
         startActivity(intent);
+        this.recreate();
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            Intent result = new Intent();
-//            result.putExtra("FakeBase", db);
-//            setResult(1, result);
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case 322:
+                Hero hero = new Hero();
+                hero.setName(db.heroDAO().getHeroes().get(item.getGroupId()));
+                hero.setId(db.heroDAO().getHeroID(db.heroDAO().getHeroes().get(item.getGroupId())));
+//                System.out.println(db.heroDAO().getHeroes().get(item.getGroupId()));
+                Advantages advantages = new Advantages(hero.getId());
+                advantages.setId(db.advantagesDAO().queryGetID(advantages.getHero_id()));
+                db.advantagesDAO().delete(advantages);
+                db.heroDAO().delete(hero);
+                this.recreate();
+                return true;
+
+
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+    }
 }

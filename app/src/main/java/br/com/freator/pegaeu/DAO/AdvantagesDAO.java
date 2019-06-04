@@ -23,9 +23,10 @@ public interface AdvantagesDAO {
     @Update
     void update(Advantages advantages);
 
-//    @Query("SELECT * FROM advantages WHERE id = :id")
-//    Advantages queryGetAdvantages(long id);
+    @Query("SELECT name FROM advantages WHERE id = :id")
+    String queryGetName(long id);
 
-    @Query("SELECT name FROM advantages WHERE hero_id = :id")
-    List<String> queryGetNames(long id);
+    @Query("SELECT id FROM advantages WHERE hero_id = :id")
+    long queryGetID(long id);
+
 }

@@ -1,37 +1,40 @@
 package br.com.freator.pegaeu.Helpers;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import br.com.freator.pegaeu.Database.Database;
 
 
-public class PickClass{
+public class PickClass extends Activity {
 
-    public String[] getSuggestions(String[] enemyHeroes, Database db){
+    Database db;
+
+    PickClass(){
+        db = Database.getDatabase(PickClass.this);
+    }
+
+    public String[] getSuggestions(String[] enemyHeroes){
         String[] resultSuggestion = new String[4];
         ArrayList<Integer> countList = new ArrayList<>();
         ArrayList<String> singleHero = new ArrayList<>();
-        Long heroID;
 
         for (String each : enemyHeroes) {
+            String suggestionReturn = db.advantagesDAO().queryGetName(db.advantagesDAO().queryGetID(db.heroDAO().getHeroID(each)));
 
-            heroID = db.heroDAO().getHeroID(each);
-            List<String> suggestionReturn = db.advantagesDAO().queryGetNames(heroID);
+            if (singleHero.contains(suggestionReturn)){
+                int index = singleHero.indexOf(suggestionReturn);
+                int valueCount = countList.get(index) + 1;
+                countList.remove(index);
+                countList.add(index, valueCount);
 
-            for (String hero: suggestionReturn) {
-                if (singleHero.contains(hero)){
-                    int index = singleHero.indexOf(hero);
-                    int valueCount = countList.get(index) + 1;
-                    countList.remove(index);
-                    countList.add(index, valueCount);
-
-                } else{
-                    singleHero.add(hero);
-                    countList.add(1);
-                }
+            } else{
+                singleHero.add(suggestionReturn);
+                countList.add(1);
             }
+
         }
         for(int i = 0; i < 4; i++){
             if(!countList.isEmpty()){
@@ -42,7 +45,6 @@ public class PickClass{
                 countList.remove(index);
             }
         }
-
         return resultSuggestion;
 
     }
